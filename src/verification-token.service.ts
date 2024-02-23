@@ -22,7 +22,7 @@ export class VerificationTokenService {
       const userId = verificationToken.userId;
 
       // Step 3: Remove all tokens belonging to the user
-      await this.verificationTokenRepository.delete({ userId });
+      this.deleteAll(userId);
 
       // Step 4: Return the userId
       return userId;
@@ -53,5 +53,10 @@ export class VerificationTokenService {
     await this.verificationTokenRepository.save(verificationToken);
 
     return randomToken;
+  }
+
+  async deleteAll(userId: string) {
+    await this.verificationTokenRepository.delete({ userId });
+    return true;
   }
 }

@@ -15,4 +15,9 @@ export class VerificationTokenController {
   insert(userId: string) {
     return this.verificationTokenService.insert(userId);
   }
+
+  @MessagePattern({ cmd: 'deleteAll' })
+  deleteAll(userId: string) {
+    return this.verificationTokenService.deleteAll(userId);
+  }
 }
